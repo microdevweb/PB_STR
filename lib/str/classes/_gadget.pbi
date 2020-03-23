@@ -19,51 +19,139 @@ Module _GADGET
 		EndWith
 	EndProcedure
 	
-	Procedure.l GetX(*this._members)
+	Procedure.l getPosX(*this._members)
 	  With *this
-	    ProcedureReturn \x
+	    If IsGadget(\id)
+	      ProcedureReturn GadgetX(\id)
+	    EndIf
+	    ProcedureReturn 0
 	  EndWith
 	EndProcedure
 	
-	Procedure setX(*this._members,x.l)
+	Procedure setPosX(*this._members,x.l)
 	  With *this
-	    \x = x
+	    If IsGadget(\id)
+	      ResizeGadget(\id,x,#PB_Ignore,#PB_Ignore,#PB_Ignore)
+	    EndIf
 	  EndWith
 	EndProcedure
 	
-	Procedure.l GetY(*this._members)
+	Procedure.l getPosY(*this._members)
 	  With *this
-	    ProcedureReturn \y
+	    If IsGadget(\id)
+	      ProcedureReturn GadgetY(\id)
+	    EndIf
+	    ProcedureReturn 0
 	  EndWith
 	EndProcedure
 	
-	Procedure setY(*this._members,y.l)
+	Procedure setPosY(*this._members,y.l)
 	  With *this
-	    \y = y
+	    If IsGadget(\id)
+	      ResizeGadget(\id,#PB_Ignore,y,#PB_Ignore,#PB_Ignore)
+	    EndIf
 	  EndWith
 	EndProcedure
 	
 	Procedure.l getWidht(*this._members)
 	  With *this
-	    ProcedureReturn \widht
+	    If IsGadget(\id)
+	      ProcedureReturn GadgetWidth(\id)
+	    EndIf
+	    ProcedureReturn 0
 	  EndWith
 	EndProcedure
 	
 	Procedure setWidht(*this._members,widht.l)
 	  With *this
-	    \widht = widht
+	    If IsGadget(\id)
+	      ResizeGadget(\id,#PB_Ignore,#PB_Ignore,widht,#PB_Ignore)
+	    EndIf
 	  EndWith
 	EndProcedure
 	
 	Procedure.l getHeight(*this._members)
 	  With *this
-	    ProcedureReturn \height
+	    If IsGadget(\id)
+	      ProcedureReturn GadgetHeight(\id)
+	    EndIf
+	    ProcedureReturn 0
 	  EndWith
 	EndProcedure
 	
 	Procedure setHeight(*this._members,height.l)
 	  With *this
-	    \height = height
+	    If IsGadget(\id)
+	      ResizeGadget(\id,#PB_Ignore,#PB_Ignore,#PB_Ignore,height)
+	    EndIf
+	  EndWith
+	EndProcedure
+	
+	Procedure setBackgroundColor(*this._members,color)
+	  With *this
+	    If IsGadget(\id)
+	      SetGadgetColor(\id,#PB_Gadget_BackColor,color)
+	    EndIf
+	  EndWith
+	EndProcedure
+	
+	Procedure getBackgroundColor(*this._members)
+	  With *this
+	    If IsGadget(\id)
+	      ProcedureReturn GetGadgetColor(\id,#PB_Gadget_BackColor)
+	    EndIf
+	    ProcedureReturn 0
+	  EndWith
+	EndProcedure
+	
+	Procedure setFrontColor(*this._members,color)
+	  With *this
+	    If IsGadget(\id)
+	      SetGadgetColor(\id,#PB_Gadget_FrontColor,color)
+	    EndIf
+	  EndWith
+	EndProcedure
+	
+	Procedure getFrontColor(*this._members)
+	  With *this
+	    If IsGadget(\id)
+	      ProcedureReturn GetGadgetColor(\id,#PB_Gadget_FrontColor)
+	    EndIf
+	    ProcedureReturn 0
+	  EndWith
+	EndProcedure
+	
+	Procedure setFont(*this._members,font)
+	  With *this
+	    If IsGadget(\id)
+	      setFont(\id,FontID(font))
+	    EndIf
+	  EndWith
+	EndProcedure
+	
+	Procedure getFont(*this._members)
+	  With *this
+	    If IsGadget(\id)
+	      ProcedureReturn GetGadgetFont(\id)
+	    EndIf
+	    ProcedureReturn 0
+	  EndWith
+	EndProcedure
+	
+	Procedure setAttribute(*this._members,attribute,value)
+	  With *this
+	    If IsGadget(\id)
+	      SetGadgetAttribute(\id,attribute,value)
+	    EndIf
+	  EndWith
+	EndProcedure
+	
+	Procedure getAttribute(*this._members,attribute)
+	  With *this
+	    If IsGadget(\id)
+	      ProcedureReturn GetGadgetAttribute(\id,attribute)
+	    EndIf
+	    ProcedureReturn 0
 	  EndWith
 	EndProcedure
 	
@@ -112,10 +200,10 @@ Module _GADGET
 
 	DataSection
 		S_MET:
-		Data.i @GetX()
-		Data.i @setX()
-		Data.i @GetY()
-		Data.i @setY()
+		Data.i @getPosX()
+		Data.i @setPosX()
+		Data.i @getPosY()
+		Data.i @setPosX()
     Data.i @getWidht()
     Data.i @setWidht()
     Data.i @getHeight()
@@ -123,11 +211,19 @@ Module _GADGET
     Data.i @disable()
     Data.i @setFocus()
     Data.i @hide()
+    Data.i @setBackgroundColor()
+    Data.i @getBackgroundColor()
+    Data.i @setFrontColor()
+    Data.i @getFrontColor()
+    Data.i @setFont()
+    Data.i @getFont()
+    Data.i @setAttribute()
+    Data.i @getAttribute()
 		E_MET:
 	EndDataSection
 EndModule
 ; IDE Options = PureBasic 5.72 LTS Beta 1 (Windows - x64)
-; CursorPosition = 124
-; FirstLine = 92
-; Folding = ----
+; CursorPosition = 205
+; FirstLine = 37
+; Folding = SAAA+
 ; EnableXP
